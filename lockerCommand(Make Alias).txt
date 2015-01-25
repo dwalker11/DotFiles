@@ -1,0 +1,1 @@
+xautolock -time 10 -locker 'i3lock -n -i /home/devon/Picutres/i3Lock.png -p default -d'  -corners +-00 -cornerdelay 4 -cornerredelay 4 &

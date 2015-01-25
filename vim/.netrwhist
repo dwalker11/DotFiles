@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/home/devon/Downloads/archlinux-artwork-1.6/wmlogos'
+let g:netrw_dirhist_2='/srv/http/Skillz/app/models'
+let g:netrw_dirhist_3='/usr/share/themes/Flattastic-Blue/gtk-3.0/assets'
