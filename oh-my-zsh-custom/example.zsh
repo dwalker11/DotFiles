@@ -1,16 +1,12 @@
-# Add yourself some shortcuts to projects you often work on
-# Example:
-#
-# brainstormr=/Users/robbyrussell/Projects/development/planetargon/brainstormr
-#
+export TERMINAL=urxvt
 
-# Set my default terminal for i3
-export TERMINAL=gnome-terminal
+# set my path variables
+export PATH=$PATH:~/.composer/vendor/bin
 
 # I like to view my directories before files
 alias lsg='ls --group-directories-first'
 
-# set the terminal font (easy) 7/19/2014
+# set the terminal font
 alias terminusB='setfont ter-u24b'
 
 # for even bigger font
