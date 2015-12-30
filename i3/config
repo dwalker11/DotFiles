@@ -11,11 +11,40 @@
 
 set $mod Mod4
 
+new_window pixel 3
+
+# Base16 Atelier Estuary by Bram de Haan (http://atelierbram.github.io/syntax-highlighting/atelier-schemes/estuary)
+
+set $base00 #22221b
+set $base01 #302f27
+set $base02 #5f5e4e
+set $base03 #6c6b5a
+set $base04 #878573
+set $base05 #929181
+set $base06 #e7e6df
+set $base07 #f4f3ec
+set $base08 #ba6236
+set $base09 #ae7313
+set $base0A #a5980d
+set $base0B #7d9726
+set $base0C #5b9d48
+set $base0D #36a166
+set $base0E #5f9182
+set $base0F #9d6c7c
+
+client.focused $base0D $base0D $base00 $base01
+client.focused_inactive $base02 $base02 $base03 $base01
+client.unfocused $base01 $base01 $base03 $base01
+client.urgent $base02 $base08 $base07 $base08
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
+#font pango:monospace 8
+
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:Terminus 20
+font pango:DejaVu Sans Mono 8
+
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
@@ -33,18 +62,17 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-# bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec dmenu_run -fn 'DejaVu Sans Mono-8'
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='demenu -i -b -fn "Terminus:pixelsize=15"'
-bindsym $mod+d exec --no-startup-id dmenu_run -i -b -fn 'DejaVuSans:pixelsize=15'
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -53,10 +81,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -65,13 +93,13 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+b split h
+bindsym $mod+h split h
 
 # split in vertical orientation
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen
+bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -151,4 +179,17 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
+        font pango:DejaVu Sans Mono 8
+
+        colors {
+          background $base01
+          statusline $base05
+          separator $base03
+
+          focused_workspace  $base0C $base0D $base00
+          active_workspace   $base02 $base02 $base07
+          inactive_workspace $base01 $base01 $base03
+          urgent_workspace   $base08 $base08 $base07
+          binding_mode       $base08 $base08 $base07
+      }
 }
