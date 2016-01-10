@@ -6,4 +6,9 @@ The allows for customization to:
 - zsh(.oh-my-zsh)
 - vim
 - i3
+- i3blocks
 - X11
+- gtk(2/3)
+- rofi
+- git
+- vim

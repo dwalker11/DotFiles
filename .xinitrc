@@ -39,4 +39,5 @@ fi
 
 xrandr --dpi 144
 nitrogen --restore &
+compton -bf
 exec i3

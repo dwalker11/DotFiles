@@ -1,12 +1,28 @@
-Xft.dpi: 144
-Xft.autohint: 0
-Xft.lcdfilter: lcddefault
-Xft.hintstyle: hintfull
-Xft.hinting: 1
+Xft.dpi:       144
 Xft.antialias: 1
-Xft.rgba: rgb
+Xft.autohint:  0
+Xft.hinting:   1
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcddefault
+Xft.rgba:      rgb
 
-urxvt.font: xft:DejaVuSansMono:size=9
+rofi.lines:           5
+!rofi.width:          100
+rofi.padding:         285
+rofi.opacity:         80
+rofi.bw:              0
+rofi.fullscreen:      true
+rofi.separator-style: none
+rofi.color-enabled:   true
+
+!                   background  border   separator_color
+rofi.color-window:  #22221b,    #22221b, #ffffff
+!                   background  foreground  background_alt  hightlight_background  highlight_foreground
+rofi.color-normal:  #22221b,    #e7e6df,    #22221b,        #929181,               #f4f3ec
+rofi.color-urgent:  #22221b,    #a5980d,    #22221b,        #929181,               #a5980d
+rofi.color-active:  #22221b,    #5b9d48,    #22221b,        #929181,               #5b9d48
+
+URxvt.font: xft:DejaVuSansMono:size=9
 
 ! scrollbar style - rxvt (default), plain (most compact), next,or xterm
 URxvt.scrollstyle: plain
