@@ -1,2 +1,2 @@
 # dotFiles
-Configuration files used on my Arch workstation
+Configuration files used on my Linux-based workstation
