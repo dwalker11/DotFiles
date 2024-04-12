@@ -1,0 +1,56 @@
+# theme = "Iceberg-Dark"
+
+[colors.bright]
+black = "#6b7089"
+blue = "#91acd1"
+cyan = "#95c4ce"
+green = "#c0ca8e"
+magenta = "#ada0d3"
+red = "#e98989"
+white = "#d2d4de"
+yellow = "#e9b189"
+
+[colors.normal]
+black = "#161821"
+blue = "#84a0c6"
+cyan = "#89b8c2"
+green = "#b4be82"
+magenta = "#a093c7"
+red = "#e27878"
+white = "#c6c8d1"
+yellow = "#e2a478"
+
+[colors.primary]
+background = "#161821"
+foreground = "#d2d4de"
+
+[font]
+# draw_bold_text_with_bright_colors = true
+size = 11.0
+
+[font.bold]
+family = "Fira Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "Fira Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "Fira Mono"
+style = "Italic"
+
+[font.normal]
+family = "Fira Mono"
+style = "Regular"
+
+# [font.selection]
+# save_to_clipboard = true
+# semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+
+[window]
+dynamic_padding = true
+
+[window.padding]
+x = 20
+y = 20
