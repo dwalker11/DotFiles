@@ -1,0 +1,15 @@
+antigen bundle common-aliases
+antigen bundle fzf
+antigen bundle git
+antigen bundle json
+antigen bundle sudo
+antigen bundle tmux
+antigen bundle web-search
+antigen bundle 'MichaelAquilina/zsh-you-should-use'
+antigen bundle olets/zsh-abbr@main
+antigen bundle rupa/z
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-completions
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+antigen apply
