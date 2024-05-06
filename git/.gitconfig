@@ -3,3 +3,5 @@
 # Please adapt and uncomment the following lines:
 	name = Devon W
 	email = devon.dana@gmail.com
+[push]
+	autoSetupRemote = true
