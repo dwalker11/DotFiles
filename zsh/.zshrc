@@ -32,6 +32,12 @@ if [ -d "/usr/local/go/bin" ]; then
     PATH="$PATH:/usr/local/go/bin"
 fi
 
+if [ -d "$HOME/.rvm/bin" ]; then
+    PATH="$PATH:$HOME/.rvm/bin"
+fi
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
 # Aliases
 alias cat='bat'
 # End of Aliases
