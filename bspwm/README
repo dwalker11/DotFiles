@@ -1,0 +1,17 @@
+Packages:
+
+- bspwm
+- sxhkd
+- polybar
+- rofi
+- picom
+- dunst
+- feh
+- arandr
+- lxapearance
+
+
+https://github.com/adi1090x/polybar-themes
+https://github.com/adi1090x/rofi
+
+Don't forget to refresh the font cache 
