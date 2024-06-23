@@ -39,7 +39,7 @@ fi
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # Aliases
-alias cat='bat'
+# alias cat='bat'
 # End of Aliases
 
 # ZSH plugin manager
