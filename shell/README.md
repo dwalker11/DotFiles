@@ -1,0 +1,4 @@
+required packages
+
+bat
+fzf
