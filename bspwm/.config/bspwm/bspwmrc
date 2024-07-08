@@ -4,7 +4,9 @@ userresources=$HOME/.Xresources
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
-bspc monitor HDMI-1 -d I II III IV V VI VII VIII IX X &
+bspc monitor HDMI-1 -d I II III IV V VI VII VIII IX &
+bspc monitor DP-1-1 -d X &
+bspc wm -O HDMI-1 DP-1-1
 
 bspc config border_width         2
 bspc config window_gap          12
@@ -26,5 +28,5 @@ fi
 picom -cf &
 
 ~/.screenlayout/default.sh
+~/.config/polybar/launch.sh
 ~/.fehbg &
-~/.config/polybar/launch.sh --forest &
