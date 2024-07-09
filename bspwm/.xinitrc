@@ -1,2 +1,1 @@
-picom -cf &
 exec bspwm

@@ -11,7 +11,7 @@ Packages:
 - lxapearance
 
 
-https://github.com/adi1090x/polybar-themes
-https://github.com/adi1090x/rofi
+https://github.com/catppuccin/polybar
+https://github.com/catppuccin/rofi
 
-Don't forget to refresh the font cache 
+Don't forget to refresh the font cache
