@@ -1,0 +1,4 @@
+# Required Packages
+
+nvim
+lvim

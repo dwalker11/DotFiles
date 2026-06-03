@@ -1,7 +1,5 @@
 # Required Packages
 
-fish
-neofetch
+alacritty
+kitty
 starship
-tmux
-zsh

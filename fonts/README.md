@@ -1,1 +1,3 @@
+# Notes
+
 Dont' forget to run `fc-cache -f -v`
