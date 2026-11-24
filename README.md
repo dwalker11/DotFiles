@@ -16,6 +16,17 @@ Run `stow -D <package>` to uninstall a package
 
 ## Packages
 
+Window managers
+
+- awesome
+- bspwm
+- hyprland
+- sway
+
+Install each package separately from the repository root with
+`stow -d window-managers -t "$HOME" <package>`. Use the same `-d` and `-t`
+options when reinstalling (`-R`) or uninstalling (`-D`).
+
 CLI
 
 - bat
