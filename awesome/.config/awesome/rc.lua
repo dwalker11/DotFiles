@@ -2,82 +2,95 @@
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
 
--- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
--- Widget and layout library
-local wibox = require("wibox")
--- Theme handling library
 local beautiful = require("beautiful")
--- Notification library
 local naughty = require("naughty")
-local menubar = require("menubar")
-local hotkeys_popup = require("awful.hotkeys_popup")
--- Enable hotkeys help widget for VIM and other apps
--- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
-RC = {} -- global namespace, on top before require any modules
-RC.vars = require("main.user-variables")
-
 -- Error handling
-require("main.error-handling")
+if awesome.startup_errors then
+  naughty.notify({
+    preset = naughty.config.presets.critical,
+    title = "Oops, there were errors during startup!",
+    text = awesome.startup_errors
+  })
+end
 
--- {{{ Variable definitions
--- Themes define colours, icons, font and wallpapers.
-beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/" .. "dwalker/theme.lua")
-beautiful.useless_gap = 3
--- }}}
+do
+  local in_error = false
+  awesome.connect_signal("debug::error", function(err)
+    if in_error then return end
+    in_error = true
 
-modkey = RC.vars.modkey
+    naughty.notify({
+      preset = naughty.config.presets.critical,
+      title = "Oops, an error happened!",
+      text = tostring(err)
+    })
+    in_error = false
+  end)
+end
 
--- Custom Local Library
-local main = {
-  layouts = require("main.layouts"),
-  tags = require("main.tags"),
-  menu = require("main.menu"),
-  rules = require("main.rules")
+-- Variable definitions
+beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
+
+terminal = "alacritty"
+editor = os.getenv("EDITOR") or "nano"
+modkey = "Mod4"
+
+awful.layout.layouts = {
+  awful.layout.suit.tile,
+  awful.layout.suit.tile.left,
+  awful.layout.suit.tile.bottom,
+  awful.layout.suit.tile.top,
+  awful.layout.suit.fair,
+  awful.layout.suit.fair.horizontal,
+  awful.layout.suit.spiral,
+  awful.layout.suit.spiral.dwindle,
+  awful.layout.suit.max,
+  awful.layout.suit.max.fullscreen,
+  awful.layout.suit.magnifier,
+  awful.layout.suit.corner.nw,
+  -- awful.layout.suit.corner.ne,
+  -- awful.layout.suit.corner.sw,
+  -- awful.layout.suit.corner.se,
+  awful.layout.suit.floating,
 }
 
--- Custom Local Library: Keys and Mouse Binding
-local bindings = {
-  globalbuttons = require("bindings.globalbuttons"),
-  clientbuttons = require("bindings.clientbuttons"),
-  globalkeys = require("bindings.globalkeys"),
-  clientkeys = require("bindings.clientkeys"),
-  bindtotags = require("bindings.bindtotags"),
-}
+-- Bar
+local mymainmenu = require("bar")(modkey, terminal, editor)
 
--- Layouts
-RC.layouts = main.layouts()
-
--- Tags
-RC.tags = main.tags()
-
--- Menu
-RC.mainmenu = awful.menu({ items = main.menu() })
-RC.launcher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = RC.mainmenu })
-
--- Menubar configuration
-menubar.utils.terminal = RC.vars.terminal -- Set the terminal for applications that require it
-
--- Mouse and Key bindings
-RC.globalkeys = bindings.globalkeys()
-RC.globalkeys = bindings.bindtotags(RC.globalkeys)
-
--- Set root
-root.buttons(bindings.globalbuttons())
-root.keys(RC.globalkeys)
-
--- Statusbar
-require("deco.statusbar")
+-- Bindings
+local bindings = require("bindings")(mymainmenu, modkey, terminal)
 
 -- Rules
-awful.rules.rules = main.rules(bindings.clientkeys(), bindings.clientbuttons())
+require("rules")(bindings)
 
 -- Signals
-require("main.signals")
+client.connect_signal("manage", function(c)
+  -- Set the windows at the slave,
+  -- i.e. put it at the end of others instead of setting it master.
+  -- if not awesome.startup then awful.client.setslave(c) end
+
+  if awesome.startup
+    and not c.size_hints.user_position
+    and not c.size_hints.program_position then
+      -- Prevent clients from being unreachable after screen count changes.
+      awful.placement.no_offscreen(c)
+  end
+end)
+
+require("titlebar")
+
+client.connect_signal("mouse::enter", function(c)
+  -- Enable sloppy focus, so that focus follows mouse.
+  c:emit_signal("request::activate", "mouse_enter", { raise = false })
+end)
+
+client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
+client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
 -- Autorun scripts
-awful.spawn.with_shell(os.getenv("HOME") .. "/.config/awesome/autorun.sh")
+awful.spawn.with_shell(gears.filesystem.get_configuration_dir() .. "autorun.sh")

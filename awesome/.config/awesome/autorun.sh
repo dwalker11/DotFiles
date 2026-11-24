@@ -7,6 +7,5 @@ run() {
 	fi
 }
 
-run picom -b
-run ~/.fehbg
-
+# run picom -b
+# run ~/.fehbg
