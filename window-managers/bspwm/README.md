@@ -15,6 +15,11 @@ Install
   bspwm in your display manager. The startup script loads X resources and
   starts sxhkd, Picom, Dunst, Polybar, and the wallpaper.
 
+For a copy-based setup, run `sh window-managers/bspwm/install.sh` from the
+repository root. The script installs packages with APT on Debian, Ubuntu,
+and their derivatives, or Pacman on Arch and its derivatives, then asks
+whether to copy the configuration files. Press Enter to skip copying.
+
 Displays and Polybar
 --------------------
 

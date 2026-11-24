@@ -26,13 +26,12 @@ An AwesomeWM configuration for X11 with a One Dark palette, a bundled wallpaper,
 | Super+Shift+C | Close the focused window |
 | Super+Ctrl+R | Reload AwesomeWM |
 
-## Arch Linux copy install
+## Copy install
 
-The [installer](install.sh) uses Pacman to update the system and install AwesomeWM and Feh, then copies the configuration. For a copy-based setup, run it with Bash from the repository root:
+The installer installs AwesomeWM and Feh, then asks whether to copy the configuration. Press Enter to skip copying. It uses APT on Debian, Ubuntu, and their derivatives, and Pacman on Arch and its derivatives. Run it from the repository root:
 
 ```sh
-mkdir -p "$HOME/.config"
-(cd awesome && bash install.sh)
+sh window-managers/awesome/install.sh
 ```
 
 ## Install with Stow

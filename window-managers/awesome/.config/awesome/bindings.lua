@@ -15,29 +15,20 @@ return function(menu, modkey, terminal)
   local globalkeys = gears.table.join(
     awful.key({ modkey, }, "s", hotkeys_popup.show_help,
       { description = "show help", group = "awesome" }),
-    awful.key({ modkey, }, "Left", awful.tag.viewprev,
+    awful.key({ modkey, }, "bracketleft", awful.tag.viewprev,
       { description = "view previous", group = "tag" }),
-    awful.key({ modkey, }, "Right", awful.tag.viewnext,
+    awful.key({ modkey, }, "bracketright", awful.tag.viewnext,
       { description = "view next", group = "tag" }),
     awful.key({ modkey, }, "Escape", awful.tag.history.restore,
       { description = "go back", group = "tag" }),
 
-    awful.key({ modkey, }, "j", function() awful.client.focus.byidx(1) end,
+    awful.key({ modkey, }, "c", function() awful.client.focus.byidx(1) end,
       { description = "focus next by index", group = "client" }),
-    awful.key({ modkey, }, "k", function() awful.client.focus.byidx(-1) end,
-      { description = "focus previous by index", group = "client" } ),
-    awful.key({ modkey, }, "w", function() menu:show() end,
+    awful.key({ modkey, "Shift" }, "c", function() awful.client.focus.byidx(-1) end,
+      { description = "focus previous by index", group = "client" }),
+    awful.key({ modkey, "Shift" }, "d", function() menu:show() end,
       { description = "show main menu", group = "awesome" }),
 
-    -- Layout manipulation
-    awful.key({ modkey, "Shift" }, "j", function() awful.client.swap.byidx(1) end,
-      { description = "swap with next client by index", group = "client" }),
-    awful.key({ modkey, "Shift" }, "k", function() awful.client.swap.byidx(-1) end,
-      { description = "swap with previous client by index", group = "client" }),
-    awful.key({ modkey, "Control" }, "j", function() awful.screen.focus_relative(1) end,
-      { description = "focus the next screen", group = "screen" }),
-    awful.key({ modkey, "Control" }, "k", function() awful.screen.focus_relative(-1) end,
-      { description = "focus the previous screen", group = "screen" }),
     awful.key({ modkey, }, "u", awful.client.urgent.jumpto,
       { description = "jump to urgent client", group = "client" }),
     awful.key({ modkey, }, "Tab",
@@ -52,21 +43,21 @@ return function(menu, modkey, terminal)
     -- Standard program
     awful.key({ modkey, }, "Return", function() awful.spawn(terminal) end,
       { description = "open a terminal", group = "launcher" }),
-    awful.key({ modkey, "Control" }, "r", awesome.restart,
+    awful.key({ modkey, "Mod1" }, "r", awesome.restart,
       { description = "reload awesome", group = "awesome" }),
-    awful.key({ modkey, "Shift" }, "q", awesome.quit,
+    awful.key({ modkey, "Mod1" }, "q", awesome.quit,
       { description = "quit awesome", group = "awesome" }),
-    awful.key({ modkey, }, "l", function() awful.tag.incmwfact(0.05) end,
+    awful.key({ modkey, "Mod1" }, "equal", function() awful.tag.incmwfact(0.05) end,
       { description = "increase master width factor", group = "layout" }),
-    awful.key({ modkey, }, "h", function() awful.tag.incmwfact(-0.05) end,
+    awful.key({ modkey, "Mod1" }, "minus", function() awful.tag.incmwfact(-0.05) end,
       { description = "decrease master width factor", group = "layout" }),
-    awful.key({ modkey, "Shift" }, "h", function() awful.tag.incnmaster(1, nil, true) end,
+    awful.key({ modkey, "Mod1", "Shift" }, "equal", function() awful.tag.incnmaster(1, nil, true) end,
       { description = "increase the number of master clients", group = "layout" }),
-    awful.key({ modkey, "Shift" }, "l", function() awful.tag.incnmaster(-1, nil, true) end,
+    awful.key({ modkey, "Mod1", "Shift" }, "minus", function() awful.tag.incnmaster(-1, nil, true) end,
       { description = "decrease the number of master clients", group = "layout" }),
-    awful.key({ modkey, "Control" }, "h", function() awful.tag.incncol(1, nil, true) end,
+    awful.key({ modkey, "Mod1", "Control" }, "equal", function() awful.tag.incncol(1, nil, true) end,
       { description = "increase the number of columns", group = "layout" }),
-    awful.key({ modkey, "Control" }, "l", function() awful.tag.incncol(-1, nil, true) end,
+    awful.key({ modkey, "Mod1", "Control" }, "minus", function() awful.tag.incncol(-1, nil, true) end,
       { description = "decrease the number of columns", group = "layout" }),
     awful.key({ modkey, }, "space", function() awful.layout.inc(1) end,
       { description = "select next", group = "layout" }),
@@ -101,7 +92,7 @@ return function(menu, modkey, terminal)
       { description = "lua execute prompt", group = "awesome" }),
 
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
+    awful.key({ modkey }, "d", function() menubar.show() end,
       { description = "show the menubar", group = "launcher" })
   )
 
@@ -112,15 +103,13 @@ return function(menu, modkey, terminal)
         c:raise()
       end,
       { description = "toggle fullscreen", group = "client" }),
-    awful.key({ modkey, "Shift" }, "c", function(c) c:kill() end,
+    awful.key({ modkey }, "w", function(c) c:kill() end,
       { description = "close", group = "client" }),
-    awful.key({ modkey, "Control" }, "space", awful.client.floating.toggle,
+    awful.key({ modkey }, "t", awful.client.floating.toggle,
       { description = "toggle floating", group = "client" }),
     awful.key({ modkey, "Control" }, "Return", function(c) c:swap(awful.client.getmaster()) end,
       { description = "move to master", group = "client" }),
-    awful.key({ modkey, }, "o", function(c) c:move_to_screen() end,
-      { description = "move to screen", group = "client" }),
-    awful.key({ modkey, }, "t", function(c) c.ontop = not c.ontop end,
+    awful.key({ modkey, "Mod1" }, "t", function(c) c.ontop = not c.ontop end,
       { description = "toggle keep on top", group = "client" }),
     awful.key({ modkey, }, "n",
       function(c)
@@ -148,6 +137,50 @@ return function(menu, modkey, terminal)
       end,
       { description = "(un)maximize horizontally", group = "client" })
   )
+
+  for _, binding in ipairs({
+    { key = "h", direction = "left",  arrow = "Left",  dx = -20, dy = 0 },
+    { key = "j", direction = "down",  arrow = "Down",  dx = 0,   dy = 20 },
+    { key = "k", direction = "up",    arrow = "Up",    dx = 0,   dy = -20 },
+    { key = "l", direction = "right", arrow = "Right", dx = 20,  dy = 0 },
+  }) do
+    globalkeys = gears.table.join(globalkeys,
+      awful.key({ modkey }, binding.key,
+        function() awful.client.focus.bydirection(binding.direction) end,
+        { description = "focus " .. binding.direction, group = "client" }),
+      awful.key({ modkey, "Shift" }, binding.key,
+        function() awful.client.swap.bydirection(binding.direction) end,
+        { description = "swap " .. binding.direction, group = "client" })
+    )
+    clientkeys = gears.table.join(clientkeys,
+      awful.key({ modkey }, binding.arrow, function(c)
+        if c.floating and not c.fullscreen then
+          local geometry = c:geometry()
+          c:geometry({ x = geometry.x + binding.dx, y = geometry.y + binding.dy })
+        end
+      end, { description = "move floating client " .. binding.direction, group = "client" })
+    )
+  end
+
+  for _, binding in ipairs({
+    { key = "bracketleft",  offset = -1, direction = "previous" },
+    { key = "bracketright", offset = 1,  direction = "next" },
+  }) do
+    globalkeys = gears.table.join(globalkeys,
+      awful.key({ modkey, "Control" }, binding.key, function()
+        if screen.count() > 1 then
+          awful.screen.focus_relative(binding.offset)
+        end
+      end, { description = "focus " .. binding.direction .. " screen", group = "screen" })
+    )
+    clientkeys = gears.table.join(clientkeys,
+      awful.key({ modkey, "Control", "Shift" }, binding.key, function(c)
+        if screen.count() > 1 then
+          c:move_to_screen(c.screen.index + binding.offset)
+        end
+      end, { description = "send client to " .. binding.direction .. " screen", group = "screen" })
+    )
+  end
 
   -- Bind all key numbers to tags.
   -- Be careful: we use keycodes to make it work on any keyboard layout.

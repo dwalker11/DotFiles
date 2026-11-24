@@ -1,22 +1,38 @@
 #!/bin/sh
-set -euo pipefail
+set -eu
 
-PACKAGE=(
-  bspwm
-  sxhkd
-  polybar
-  rofi
-  picom
-  dunst
-  feh
-  arandr
-  lxappearance
-  # betterlockscreen # Use yay to install
-)
+if [ -r /etc/os-release ]; then
+  . /etc/os-release
+elif [ -r /usr/lib/os-release ]; then
+  . /usr/lib/os-release
+fi
 
-# Refresh and install required packages
-sudo pacman -Syu --needed --noconfirm "${PACKAGE[@]}"
+cd -- "$(dirname -- "$0")"
+set -- bspwm sxhkd polybar rofi picom dunst feh arandr lxappearance
 
-# Copy files to destination
-cp --recursive --verbose "{.Xresources,.fehbg,.screenlayout}" "${HOME}"
-cp --recursive --verbose ".config/*" "${HOME}/.config"
+case " ${ID:-} ${ID_LIKE:-} " in
+  *" debian "*|*" ubuntu "*)
+    sudo apt-get update
+    sudo apt-get install -y "$@"
+    ;;
+  *" arch "*)
+    sudo pacman -Syu --needed --noconfirm "$@"
+    ;;
+  *)
+    printf 'Unsupported Linux distribution: %s\n' "${PRETTY_NAME:-${ID:-unknown}}" >&2
+    exit 1
+    ;;
+esac
+
+printf 'Copy bspwm configuration files into %s? Existing files may be overwritten. [y/N] ' "$HOME"
+if ! read -r answer; then
+  answer=
+fi
+case "$answer" in
+  [yY]|[yY][eE][sS]) ;;
+  *) printf '%s\n' 'Skipped copying configuration files.'; exit 0 ;;
+esac
+
+mkdir -p "$HOME/.config"
+cp -Rv .Xresources .fehbg .screenlayout "$HOME/"
+cp -Rv .config/. "$HOME/.config/"

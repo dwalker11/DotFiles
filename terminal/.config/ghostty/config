@@ -1,0 +1,15 @@
+theme = "Ayu Mirage"
+# theme = "hopscotch.256"
+
+font-family = "FiraCode Nerd Font Mono"
+font-size = 10
+# font-thicken = true
+
+background-blur = 20
+background-opacity = 1
+window-padding-x = 2
+window-padding-y = 4
+
+mouse-hide-while-typing = true
+shell-integration = fish
+command = fish
