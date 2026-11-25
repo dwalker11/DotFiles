@@ -1,38 +1,39 @@
+[general]
 import = [
   "~/.config/alacritty/themes/catppuccin_mocha.toml"
 ]
-
 live_config_reload = true
 
 [env]
 TERM = "xterm-256color"
 
+[terminal]
+shell = "/usr/bin/fish"
+
 [font]
 size = 10
 
   [font.bold]
-  family = "Hack Nerd Font"
+  family = "FiraCode Nerd Font Mono SemBd"
   style = "Bold"
 
   [font.bold_italic]
-  family = "Hack Nerd Font"
+  family = "FiraCode Nerd Font Mono"
   style = "Bold Italic"
 
   [font.italic]
-  family = "Hack Nerd Font"
+  family = "FiraCode Nerd Font Mono"
   style = "Italic"
 
   [font.normal]
-  family = "Hack Nerd Font"
+  family = "FiraCodeNerd Font Mono"
   style = "Regular"
 
 [window]
 dynamic_padding = true
 opacity = 0.98
+blur = true
 
   [window.padding]
-  x = 20
-  y = 20
-
-[scrolling]
-history = 50_000
+  x = 4
+  y = 4
