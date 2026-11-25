@@ -6,6 +6,8 @@ Install
 
 - Install bspwm, sxhkd, polybar, rofi, picom, dunst, feh, and alacritty.
   Alacritty is the terminal launched by the default sxhkd binding.
+- Install `xorg-xsetroot` on Arch or `x11-xserver-utils` on Debian/Ubuntu
+  so bspwmrc can set the cursor on the empty desktop.
 - Install Hack Nerd Font for Polybar and run `fc-cache -f` after adding it.
 - From the repository root, run `stow -d window-managers -t "$HOME" bspwm` to link the
   configuration. If you previously installed this package, use
@@ -24,9 +26,8 @@ Displays and Polybar
 --------------------
 
 Run `xrandr --listmonitors` from the X session to find its output names.
-The desktop assignment in `~/.config/bspwm/bspwmrc` targets `DP-2`.
-Set that name to your actual output to assign desktops I through VI.
-On the current workstation, X reports the output as `DisplayPort-1`.
+At startup, `~/.config/bspwm/bspwmrc` assigns desktops I through VI to
+the focused monitor.
 
 `~/.screenlayout/default.sh` is an older two-monitor preset. It places
 `DP-1-1` (2560x2880) on the left and the primary `HDMI-1` (2560x1440)

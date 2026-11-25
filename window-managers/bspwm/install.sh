@@ -13,10 +13,10 @@ set -- bspwm sxhkd polybar rofi picom dunst feh arandr lxappearance
 case " ${ID:-} ${ID_LIKE:-} " in
   *" debian "*|*" ubuntu "*)
     sudo apt-get update
-    sudo apt-get install -y "$@"
+    sudo apt-get install -y "$@" x11-xserver-utils
     ;;
   *" arch "*)
-    sudo pacman -Syu --needed --noconfirm "$@"
+    sudo pacman -Syu --needed --noconfirm "$@" xorg-xsetroot
     ;;
   *)
     printf 'Unsupported Linux distribution: %s\n' "${PRETTY_NAME:-${ID:-unknown}}" >&2
