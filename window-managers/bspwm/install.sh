@@ -33,6 +33,8 @@ case "$answer" in
   *) printf '%s\n' 'Skipped copying configuration files.'; exit 0 ;;
 esac
 
-mkdir -p "$HOME/.config"
+mkdir -p "$HOME/.config" "$HOME/.local/bin"
 cp -Rv .Xresources .fehbg .screenlayout "$HOME/"
 cp -Rv .config/. "$HOME/.config/"
+cp -v .local/bin/lock "$HOME/.local/bin/lock"
+chmod +x "$HOME/.local/bin/lock"

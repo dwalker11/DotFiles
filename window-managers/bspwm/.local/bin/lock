@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if ! command -v betterlockscreen >/dev/null 2>&1; then
+    printf '%s\n' 'lock: betterlockscreen is required; install it and i3lock-color first.' >&2
+    exit 127
+fi
+
+exec betterlockscreen --lock blur

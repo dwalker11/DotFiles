@@ -22,6 +22,23 @@ repository root. The script installs packages with APT on Debian, Ubuntu,
 and their derivatives, or Pacman on Arch and its derivatives, then asks
 whether to copy the configuration files. Press Enter to skip copying.
 
+Screen locking
+--------------
+
+Install [betterlockscreen](https://github.com/betterlockscreen/betterlockscreen#installation)
+and its dependencies, including i3lock-color. From your X session, prepare
+the cached lock-screen images with:
+
+```sh
+betterlockscreen --update "$HOME/Pictures/wallpaper.png"
+```
+
+Run `~/.local/bin/lock` or choose Lock in the Rofi power menu (`super + p`).
+The script uses betterlockscreen's blurred background and the supplied
+`~/.config/betterlockscreenrc`. Run the update command again after changing
+your wallpaper or display layout. Both Stow and the copy installer install
+the lock script; rerun your installation command to pick it up.
+
 Displays and Polybar
 --------------------
 
